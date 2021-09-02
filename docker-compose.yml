@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  customerservice:
+    image: ${DOCKER_REGISTRY-}customerservice
+    build:
+      context: .
+      dockerfile: src/Customer/CustomerService/Dockerfile
+    depends_on:
+      - seq
+
+  seq:
+    image: datalust/seq:latest
+    environment: 
+      - ACCEPT_EULA=Y
+    ports: 
+      - 8081:80
+    volumes: 
+      - seqdata:/var/lib/seq
+    restart: "unless-stopped"
+
+volumes:
+  seqdata:
