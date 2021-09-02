@@ -13,6 +13,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.Infrastructure.Interface\Common.Infrastructure.Interface.csproj" />
     <ProjectReference Include="..\..\Common\Common.Persistance.EFCore\Common.Persistance.EFCore.csproj" />
+    <ProjectReference Include="..\Customer.Domain\Customer.Domain.csproj" />
+    <ProjectReference Include="..\Customer.Logic\Customer.Logic.csproj" />
     <ProjectReference Include="..\Domain\Customer.Domain.csproj" />
     <ProjectReference Include="..\Logic\Customer.Logic.csproj" />
   </ItemGroup>
