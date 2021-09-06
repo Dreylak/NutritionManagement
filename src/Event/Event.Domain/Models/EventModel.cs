@@ -24,6 +24,6 @@ namespace Event.Domain.Models
 
         public int CustomersEnrolled { get; set; }
 
-        public ICollection<CustomerModel> Customers { get; set; }
+        public ICollection<CustomerModel> Customers { get; private set; } = new List<CustomerModel>();
     }
 }

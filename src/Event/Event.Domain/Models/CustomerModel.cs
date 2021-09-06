@@ -6,6 +6,6 @@ namespace Event.Domain.Models
     {
         public int Id { get; set; }
 
-        public ICollection<EventModel> Events { get; set; }
+        public ICollection<EventModel> Events { get; private set; } = new List<EventModel>();
     }
 }

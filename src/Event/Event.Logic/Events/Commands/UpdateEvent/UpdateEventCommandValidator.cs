@@ -32,7 +32,7 @@ namespace Event.Logic.Events.Commands.UpdateEvent
                 .GreaterThanOrEqualTo(v => v.StartDate).WithMessage("End date at least greater than or equal to start date.");
 
             RuleFor(v => v.CustomersCapacity)
-                .GreaterThanOrEqualTo(1).WithMessage("Customers capacity at least greater than or equal to 1."); ;
+                .GreaterThanOrEqualTo(1).WithMessage("Customers capacity at least greater than or equal to 1.");
         }
     }
 }

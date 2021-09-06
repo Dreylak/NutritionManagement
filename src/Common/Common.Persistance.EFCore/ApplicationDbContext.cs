@@ -45,7 +45,7 @@ namespace Common.Persistance.EFCore
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
 
             base.OnModelCreating(builder);
         }

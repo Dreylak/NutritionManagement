@@ -10,13 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Enrollments\Commands\EnrollCustomerForEvent\" />
-    <Folder Include="Enrollments\Commands\RemoveCustomerFromEvent\" />
-    <Folder Include="Enrollments\Queries\GetCustomerEnrollments\" />
-    <Folder Include="Enrollments\Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.3" />
     <PackageReference Include="MediatR" Version="9.0.0" />

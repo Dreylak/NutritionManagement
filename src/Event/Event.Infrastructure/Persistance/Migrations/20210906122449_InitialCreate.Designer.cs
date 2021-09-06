@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Event.Infrastructure.Persistance.Migrations
 {
     [DbContext(typeof(EventDbContext))]
-    [Migration("20210906081510_InitialCreate")]
+    [Migration("20210906122449_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,9 +39,7 @@ namespace Event.Infrastructure.Persistance.Migrations
             modelBuilder.Entity("Event.Domain.Models.CustomerModel", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

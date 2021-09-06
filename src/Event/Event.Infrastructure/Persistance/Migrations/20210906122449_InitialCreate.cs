@@ -13,7 +13,6 @@ namespace Event.Infrastructure.Persistance.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 },
                 constraints: table =>
                 {

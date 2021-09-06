@@ -37,9 +37,7 @@ namespace Event.Infrastructure.Persistance.Migrations
             modelBuilder.Entity("Event.Domain.Models.CustomerModel", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
