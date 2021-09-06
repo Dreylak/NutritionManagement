@@ -3,6 +3,7 @@ using Common.Models;
 using Customer.Logic.Customers.Commands.CreateCustomer;
 using Customer.Logic.Customers.Commands.DeleteCustomer;
 using Customer.Logic.Customers.Commands.UpdateCustomer;
+using Customer.Logic.Customers.Queries.GetCustomerDetails;
 using Customer.Logic.Customers.Queries.GetCustomersWithPagination;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -15,6 +16,12 @@ namespace CustomerService.Controllers
         public async Task<ActionResult<PaginatedList<CustomerBriefDto>>> GetCustomersWithPagination([FromQuery] GetCustomersWithPaginationQuery query)
         {
             return await Mediator.Send(query);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CustomerDetailsDto>> GetCustomerDetails(int id)
+        {
+            return await Mediator.Send(new GetCustomerDetailsQuery(id));
         }
 
         [HttpPost]

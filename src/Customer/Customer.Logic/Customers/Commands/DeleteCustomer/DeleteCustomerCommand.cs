@@ -1,4 +1,5 @@
 ﻿using Common.Exceptions;
+using Customer.Domain.Models;
 using Customer.Logic.Common.Interfaces;
 using MediatR;
 using System.Threading;
@@ -23,7 +24,7 @@ namespace Customer.Logic.Customers.Commands.DeleteCustomer
 
             if (entity == null)
             {
-                throw new NotFoundException(nameof(Customer), request.Id);
+                throw new NotFoundException(nameof(CustomerModel), request.Id);
             }
 
             _context.Customers.Remove(entity);

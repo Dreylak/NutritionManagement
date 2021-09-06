@@ -5,11 +5,11 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace Customer.Logic
+namespace Event.Logic
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddCustomerLogic(this IServiceCollection services)
+        public static IServiceCollection AddEventLogic(this IServiceCollection services)
         {
             services.AddAutoMapper(cfg => cfg.AddProfile(new MappingProfile(Assembly.GetExecutingAssembly())));
 

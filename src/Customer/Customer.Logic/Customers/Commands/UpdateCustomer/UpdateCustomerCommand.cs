@@ -1,4 +1,5 @@
 ﻿using Common.Exceptions;
+using Customer.Domain.Models;
 using Customer.Logic.Common.Interfaces;
 using MediatR;
 using System;
@@ -31,7 +32,7 @@ namespace Customer.Logic.Customers.Commands.UpdateCustomer
 
             if (entity == null)
             {
-                throw new NotFoundException(nameof(Customer), request.Id);
+                throw new NotFoundException(nameof(CustomerModel), request.Id);
             }
 
             entity.FirstName = request.FirstName;

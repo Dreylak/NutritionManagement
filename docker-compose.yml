@@ -1,14 +1,6 @@
 version: '3.4'
 
 services:
-  customerservice:
-    image: ${DOCKER_REGISTRY-}customerservice
-    build:
-      context: .
-      dockerfile: src/Customer/CustomerService/Dockerfile
-    depends_on:
-      - seq
-
   seq:
     image: datalust/seq:latest
     environment: 
@@ -18,6 +10,68 @@ services:
     volumes: 
       - seqdata:/var/lib/seq
     restart: "unless-stopped"
+  
+  postgres-customer:
+    image: postgres:latest
+    ports: 
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_DB: CustomerDb
+      POSTGRES_USER: customer
+      POSTGRES_PASSWORD: customer
+
+  postgres-event:
+    image: postgres:latest
+    ports: 
+      - "5433:5432"
+    restart: always
+    environment:
+      POSTGRES_DB: EventDb
+      POSTGRES_USER: event
+      POSTGRES_PASSWORD: event
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "5555:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: admin
+    restart: unless-stopped
+
+  customerservice:
+    image: ${DOCKER_REGISTRY-}customerservice
+    build:
+      context: .
+      dockerfile: src/Customer/CustomerService/Dockerfile
+    ports:
+      - "5000:80"
+      - "7000:443"
+    environment:
+      - UseInMemoryDatabase=false
+      - "ConnectionStrings__DefaultConnection=Host=postgres-customer;Port=5432;Database=CustomerDb;Username=customer;Password=customer"
+      - ASPNETCORE_URLS=http://+:80;https://+:443
+    depends_on:
+      - seq
+      - postgres-customer
+
+  eventservice:
+    image: ${DOCKER_REGISTRY-}eventservice
+    build:
+      context: .
+      dockerfile: src/Event/EventService/Dockerfile
+    ports:
+      - "5001:80"
+      - "7001:443"
+    environment:
+      - UseInMemoryDatabase=false
+      - "ConnectionStrings__DefaultConnection=host=postgres-event;port=5432;database=EventDb;username=event;password=event;CommandTimeout=3000"
+      - ASPNETCORE_URLS=http://+:80;https://+:443
+    depends_on:
+      - seq
+      - postgres-event
 
 volumes:
   seqdata:
+

@@ -1,7 +1,7 @@
 using Common.Infrastructure.Implementation;
-using Customer.Infrastructure;
-using Customer.Infrastructure.Persistance;
-using Customer.Logic;
+using Event.Infrastructure;
+using Event.Infrastructure.Persistance;
+using Event.Logic;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -12,7 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Serilog;
 
-namespace CustomerService
+namespace EventService
 {
     public class Startup
     {
@@ -26,19 +26,19 @@ namespace CustomerService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCustomerLogic();
+            services.AddEventLogic();
             services.AddInfrastructure();
-            services.AddCustomerInfrastructure(Configuration);
+            services.AddEventInfrastructure(Configuration);
 
             services.AddHealthChecks()
-                .AddDbContextCheck<CustomerDbContext>();
+                .AddDbContextCheck<EventDbContext>();
 
             services.AddCors();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CustomerService", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "EventService", Version = "v1" });
             });
         }
 
@@ -49,7 +49,7 @@ namespace CustomerService
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CustomerService v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EventService v1"));
 
                 app.UseCors(
                     builder => builder

@@ -13,6 +13,12 @@ namespace Common.Exceptions
             Errors = new Dictionary<string, string[]>();
         }
 
+        //TODO: remove this after creating custom error codes (this should exist only for validators)
+        public ValidationException(string message)
+            : base(message)
+        {
+        }
+
         public ValidationException(IEnumerable<ValidationFailure> failures)
             : this()
         {

@@ -1,4 +1,4 @@
-using Customer.Infrastructure.Persistance;
+using Event.Infrastructure.Persistance;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -8,7 +8,7 @@ using Serilog;
 using System;
 using System.Threading.Tasks;
 
-namespace CustomerService
+namespace EventService
 {
     public class Program
     {
@@ -58,7 +58,7 @@ namespace CustomerService
             {
                 var services = scope.ServiceProvider;
 
-                var context = services.GetRequiredService<CustomerDbContext>();
+                var context = services.GetRequiredService<EventDbContext>();
 
                 if (context.Database.IsNpgsql())
                 {

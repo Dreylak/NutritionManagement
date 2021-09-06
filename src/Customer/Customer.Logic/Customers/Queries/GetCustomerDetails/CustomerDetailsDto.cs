@@ -3,7 +3,7 @@ using Common.Mappings;
 using Customer.Domain.Models;
 using System;
 
-namespace Customer.Logic.Customers.Queries.GetCustomerDetailsById
+namespace Customer.Logic.Customers.Queries.GetCustomerDetails
 {
     public class CustomerDetailsDto : IMapFrom<CustomerModel>
     {

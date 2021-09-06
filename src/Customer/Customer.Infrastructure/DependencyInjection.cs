@@ -19,7 +19,7 @@ namespace Customer.Infrastructure
             else
             {
                 services.AddDbContext<CustomerDbContext>(options =>
-                    options.UseSqlServer(
+                    options.UseNpgsql(
                         configuration.GetConnectionString("DefaultConnection"),
                         b => b.MigrationsAssembly(typeof(CustomerDbContext).Assembly.FullName)));
             }
